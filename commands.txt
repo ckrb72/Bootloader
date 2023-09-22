@@ -1,0 +1,3 @@
+gcc -m32 -ffreestanding -c file.c -o file.o -fno-pie
+ld -o file.bin -m elf_i386 -Ttext 0x0 file.o --oformat binary
+ndisasm -b 32 file.bin > file.dis
