@@ -1,3 +1,4 @@
+
 void main()
 {
 	//Where the vga memory starts
