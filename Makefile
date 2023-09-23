@@ -20,10 +20,13 @@ $(BUILD)/kernel_entry.o: kernel_entry.asm
 	nasm $< -f elf -o $@
 
 clean:
-	rm $(BUILD)/*.bin $(BUILD)/*.o
+	rm -fr $(BUILD)/*.bin $(BUILD)/*.o $(BUILD)/*.dis
 
 run: all
 	qemu-system-i386 -fda $(BUILD)/os-image
 
 clean_all:
-	rm $(BUILD)/*.bin $(BUILD)/*.o $(BUILD)/os-image
+	rm -fr $(BUILD)/*.bin $(BUILD)/*.o $(BUILD)/os-image $(BUILD)/*.dis
+
+disasm: $(BUILD)/kernel.bin
+	ndisasm -b 32 $< > $(BUILD)/kernel.dis
